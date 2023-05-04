@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root name="gateway" org="doublechaintech" version="1.0">
+    <include lib="iam"/>
+    <platform
+            name="网关服务"
+            create_time="createTime()"
+            last_update_time="updateTime()"
+            _autoFunction="rootPlatform"
+    />
+
+
+    <service_configuration
+            name="pilot服务"
+            service_host="http://localhost:8081/pilot"
+            platform="platform()"
+    />
+
+    <service_mapping
+            service_prefix="pilotService"
+            service_configuration="service_configuration()"
+    />
+
+    <menu_item
+            name="主页|[1, 50]"
+            code="home|[1,50]"
+            icon="aaaaa?|[0, 100]"
+            action="aaaa?|[0, 100]"
+            load_expression="xxx?|[0, 200]"
+            service="service_configuration()?"
+    />
+
+    <menu_relation
+            parent="home|[1,50]"
+            child="menu1|[1,50]"
+            display_order="9999.99|[1,200]"
+            platform="platform()"
+    />
+
+
+    <natural_person
+            name="姓名:李军勇|李建康|向问天|[1,20]"
+            contact="联系电话:18012341234|string(max=20)"
+            platform="platform()"
+            create_time="createTime()"
+    />
+
+    <merchant
+            _name="工厂"
+            name="广钢集团|珠江气体|南沙工厂|武汉工厂|[1,100]"
+            nickname="广钢集团|珠江气体?|[0,100]"
+            address="详细地址:天府三街?|[0,100]"
+            contact_name="联系人:张三？|[0,20]"
+            contact_mobile="联系电话:18900000001?"
+            contact_email="联系邮箱:email@company.com?"
+            owner="所有者:natural_person()?"
+            admin="管理员:natural_person()?"
+            create_time="createTime()"
+            platform="platform()"
+    />
+
+    <employee
+            _name="员工"
+            name="张三|李四|王五|[1,200]"
+            code="工号:xxxx?|[0,100]"
+            user="natural_person()"
+            avatar="照片:man.jpg|woman.jpg?"
+            status="user_status()?"
+            merchant="merchant()"
+            create_time="createTime()"
+    />
+
+    <merchant_configuration
+            _name="工厂配置"
+            code="xxxx|[1,50]"
+            value="xxxx|[1,200]"
+            merchant="merchant()"
+    />
+
+    <merchant_department
+            _name="部门"
+            name="招采部|[1,20]"
+            merchant="merchant()"
+    />
+
+
+    <job
+            _name="岗位"
+            name="管理员|审评员|检验员|[1,200]"
+            description="岗位描述|[1,200]"
+            last_update_time="updateTime()"
+            job_type="job_type()"
+            department="merchant_department()?"
+            employee="employee()"
+            merchant="merchant()"
+    />
+
+    <job_type
+            _name="角色"
+            name="角色名称:xxxx|[1,100]"
+            code="角色代码:xxxx|[1,100]"
+            merchant="merchant()"
+    />
+
+    <job_type_access
+            name="权限|[1,40]"
+            code="CODE|[1,40]"
+            enabled="true|false"
+            job_type="job_type(visible)"
+
+    />
+
+    <user_status
+            name="用户状态:活跃|未激活"
+            code="代码:ACTIVE|DISABLED"
+            _features="status"
+            create_time="createTime()"
+            platform="platform()"
+            _identified_by="code"/>
+</root>
